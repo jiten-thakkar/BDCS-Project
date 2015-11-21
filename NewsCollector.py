@@ -25,6 +25,7 @@ for symbol in stockSymbols:
     # file = os.
     try:
         data = stockretriever.get_news_feed(symbol)
+        pickle.dump(data, open(directory+"/"+symbol+"_"+str(date)+"_"+str(epochTime)+EXT, "wb"))
     except stockretriever.QueryError as e:
         print "Got error: " + str(e)
     except KeyError as e:
@@ -33,7 +34,6 @@ for symbol in stockSymbols:
         print "Got error: " + str(e)
     except Exception, err:
         print('ERROR: %sn' % str(err))
-    pickle.dump(data, open(directory+"/"+symbol+"_"+str(date)+"_"+str(epochTime)+EXT, "wb"))
 
 print str(datetime.datetime.now()) + " start= " + str(start) + " end= " + str(end)
     # os.close(file)

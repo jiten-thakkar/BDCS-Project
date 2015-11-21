@@ -22,6 +22,10 @@ epochTime = int(time.time())
 # file = os.
 try:
     data = stockretriever.get_current_info(stockSymbols[start:end])
+    directory = FILE_PREFIX+"/"+str(date)
+    if not os.path.exists(directory):
+        os.makedirs(directory)
+    pickle.dump(data, open(directory+"/"+str(epochTime)+EXT, "wb"))
 except stockretriever.QueryError as e:
         print "Got error: " + str(e)
 except KeyError as e:
@@ -30,10 +34,6 @@ except TypeError as e:
         print "Got error: " + str(e)
 except Exception, err:
         print('ERROR: %sn' % str(err))
-directory = FILE_PREFIX+"/"+str(date)
-if not os.path.exists(directory):
-    os.makedirs(directory)
-pickle.dump(data, open(directory+"/"+str(epochTime)+EXT, "wb"))
 
 print str(datetime.datetime.now()) + " start= " + str(start) + " end= " + str(end)
 # os.close(file)
