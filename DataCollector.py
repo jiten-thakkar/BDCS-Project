@@ -34,4 +34,6 @@ directory = FILE_PREFIX+"/"+str(date)
 if not os.path.exists(directory):
     os.makedirs(directory)
 pickle.dump(data, open(directory+"/"+str(epochTime)+EXT, "wb"))
+
+print str(datetime.datetime.now()) + " start= " + str(start) + " end= " + str(end)
 # os.close(file)

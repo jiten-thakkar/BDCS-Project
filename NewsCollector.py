@@ -34,4 +34,6 @@ for symbol in stockSymbols:
     except Exception, err:
         print('ERROR: %sn' % str(err))
     pickle.dump(data, open(directory+"/"+symbol+"_"+str(date)+"_"+str(epochTime)+EXT, "wb"))
+
+print str(datetime.datetime.now()) + " start= " + str(start) + " end= " + str(end)
     # os.close(file)
