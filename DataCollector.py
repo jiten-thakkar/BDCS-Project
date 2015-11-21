@@ -20,7 +20,16 @@ end = int(str(sys.argv[2]))
 date = datetime.date.today()
 epochTime = int(time.time())
 # file = os.
-data = stockretriever.get_current_info(stockSymbols[start:end])
+try:
+    data = stockretriever.get_current_info(stockSymbols[start:end])
+except stockretriever.QueryError as e:
+        print "Got error: " + str(e)
+except KeyError as e:
+        print "Got error: " + str(e)
+except TypeError as e:
+        print "Got error: " + str(e)
+except Exception, err:
+        print('ERROR: %sn' % str(err))
 directory = FILE_PREFIX+"/"+str(date)
 if not os.path.exists(directory):
     os.makedirs(directory)

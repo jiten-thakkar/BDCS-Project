@@ -23,6 +23,15 @@ if not os.path.exists(directory):
     os.makedirs(directory)
 for symbol in stockSymbols:
     # file = os.
-    data = stockretriever.get_news_feed(symbol)
+    try:
+        data = stockretriever.get_news_feed(symbol)
+    except stockretriever.QueryError as e:
+        print "Got error: " + str(e)
+    except KeyError as e:
+        print "Got error: " + str(e)
+    except TypeError as e:
+        print "Got error: " + str(e)
+    except Exception, err:
+        print('ERROR: %sn' % str(err))
     pickle.dump(data, open(directory+"/"+symbol+"_"+str(date)+"_"+str(epochTime)+EXT, "wb"))
     # os.close(file)
