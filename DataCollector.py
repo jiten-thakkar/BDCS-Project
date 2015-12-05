@@ -17,6 +17,7 @@ total = len(stockSymbols)
 # print str(sys.argv)
 start = int(str(sys.argv[1]))
 end = int(str(sys.argv[2]))
+server = str(sys.argv[3])
 date = datetime.date.today()
 epochTime = int(time.time())
 # file = os.
@@ -25,7 +26,7 @@ try:
     directory = FILE_PREFIX+"/"+str(date)
     if not os.path.exists(directory):
         os.makedirs(directory)
-    pickle.dump(data, open(directory+"/"+str(epochTime)+EXT, "wb"))
+    pickle.dump(data, open(directory+"/"+server+"_"+str(epochTime)+EXT, "wb"))
 except stockretriever.QueryError as e:
         print "Got error: " + str(e)
 except KeyError as e:
